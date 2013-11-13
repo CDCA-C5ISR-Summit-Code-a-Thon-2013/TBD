@@ -1,6 +1,10 @@
 package com.scires.tolo;
 
+import java.util.ArrayList;
 import java.util.Locale;
+
+import com.scires.tolo.data.Person;
+import com.scires.tolo.data.WantedDAO;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -51,6 +56,41 @@ public class MainActivity extends FragmentActivity {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		
+		WantedDAO dao = WantedDAO.getInstance(this.getApplicationContext());
+		
+		
+		
+        
+		Person p = new Person();
+		p.setId(0);
+		p.setAge("25");
+		p.setHeight("511");
+		p.setImageLocation("");
+		p.setName("Admiral Ackbar");
+		p.setWantedFor("Stealing Death Star Plans");
+		p.setRewardAmount("5 Million Imperial Credits");
+		p.setWeight("225");
+		
+		dao.addPerson(p);
+		
+		p = new Person();
+		p.setId(1);
+		p.setAge("35");
+		p.setHeight("611");
+		p.setImageLocation("");
+		p.setName("Chewbacca");
+		p.setWantedFor("Aiding and Abedding");
+		p.setRewardAmount("1 Million Imperial Credits");
+		p.setWeight("425");
+		dao.addPerson(p);
+		
+		
+		ArrayList<Person> pList = dao.checkDB(0, 0);
+		
+		for (Person p1:pList) {
+			Log.d("JAMIE", p1.getName());
+		}
 
 	}
 

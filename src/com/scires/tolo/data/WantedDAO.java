@@ -12,10 +12,10 @@ public class WantedDAO {
 	
 	private WantedDAO(Context context) {
 		
-		db = new DatabaseHandler(null);
+		db = new DatabaseHandler(context);
 		
 	}
-	
+	   
 	public static synchronized WantedDAO getInstance(Context context) {
 		
 		if (instance == null) instance = new WantedDAO(context);
@@ -26,5 +26,10 @@ public class WantedDAO {
 	public ArrayList<Person> checkDB(double x, double y) {
 		
 		return db.checkDB(x,y);
+	}
+
+	public void addPerson(Person p) {
+		db.addPerson(p);
+		
 	}
 }
