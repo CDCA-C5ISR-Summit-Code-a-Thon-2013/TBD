@@ -14,8 +14,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
@@ -82,7 +85,7 @@ public class MainActivity extends FragmentActivity {
 		@Override
 		public int getCount() {
 			// Show 3 total pages.
-			return 3;
+			return 2;
 		}
 
 		@Override
@@ -93,8 +96,6 @@ public class MainActivity extends FragmentActivity {
 				return getString(R.string.title_section1).toUpperCase(l);
 			case 1:
 				return getString(R.string.title_section2).toUpperCase(l);
-			case 2:
-				return getString(R.string.title_section3).toUpperCase(l);
 			}
 			return null;
 		}
@@ -119,10 +120,31 @@ public class MainActivity extends FragmentActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
 					container, false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+			Button trackButton = (Button) rootView
+					.findViewById(R.id.button);
+			trackButton.setOnClickListener(new OnClickListener() {
+				public void onClick(View v){
+					GPSTracker gps = new GPSTracker(v.getContext());
+					// check if GPS enabled     
+	                if(gps.canGetLocation()){
+	                     
+	                    double latitude = gps.getLatitude();
+	                    double longitude = gps.getLongitude();
+	                     
+	                    // \n is for new line
+	                    Toast.makeText(v.getContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();    
+	                }else{
+	                    // can't get location
+	                    // GPS or Network is not enabled
+	                    // Ask user to enable GPS/network in settings
+	                    gps.showSettingsAlert();
+	                }
+				}
+			});
+//			TextView dummyTextView = (TextView) rootView
+//					.findViewById(R.id.section_label);
+//			dummyTextView.setText(Integer.toString(getArguments().getInt(
+//					ARG_SECTION_NUMBER)));
 			return rootView;
 		}
 	}
