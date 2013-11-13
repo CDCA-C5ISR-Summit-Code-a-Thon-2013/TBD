@@ -3,8 +3,10 @@
 
     <string name="app_name">TOLO</string>
     <string name="action_settings">Settings</string>
-    <string name="title_section1">Home</string>
-    <string name="title_section2">Hits</string>
+    <string name="title_section1">List</string>
+    <string name="title_section2">Map</string>
     <string name="button_track">Track</string>
+    <string name="action_track">Track</string>
+    <string name="action_stop">Stop</string>
 
 </resources>

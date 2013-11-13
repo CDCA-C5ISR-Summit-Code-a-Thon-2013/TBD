@@ -5,5 +5,19 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
+    
+    <group android:id="@+id/actionbar" >
+        <item
+            android:id="@+id/action_track"
+            android:icon="@drawable/gps_icon_toast_large"
+            android:showAsAction="always"
+            android:title="@string/action_track"/>  
+            
+        <item
+            android:id="@+id/action_stop"
+            android:icon="@drawable/ic_stop_service"
+            android:showAsAction="always"
+            android:title="@string/action_stop" />
+    </group>
 
 </menu>
