@@ -41,6 +41,7 @@ public class MainActivity extends FragmentActivity {
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	ViewPager mViewPager;
+	GPSTracker gps = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,36 @@ public class MainActivity extends FragmentActivity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	@Override
+	  public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    case R.id.action_track:
+	    	if (gps == null)
+	    		gps = new GPSTracker(getApplicationContext());
+			// check if GPS enabled     
+            if(gps.canGetLocation()){
+                 
+                double latitude = gps.getLatitude();
+                double longitude = gps.getLongitude();
+                Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();    
+            }else{
+                // can't get location
+                // GPS or Network is not enabled
+                // Ask user to enable GPS/network in settings
+                gps.showSettingsAlert();
+            }
+	      break;
+	    case R.id.action_stop:
+	    	if(gps != null)
+	    		gps.stopUsingGPS();
+
+	    default:
+	      break;
+	    }
+
+	    return true;
+	  } 
 
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -131,27 +162,27 @@ public class MainActivity extends FragmentActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
 					container, false);
-			Button trackButton = (Button) rootView
-					.findViewById(R.id.button);
-			trackButton.setOnClickListener(new OnClickListener() {
-				public void onClick(View v){
-					GPSTracker gps = new GPSTracker(v.getContext());
-					// check if GPS enabled     
-	                if(gps.canGetLocation()){
-	                     
-	                    double latitude = gps.getLatitude();
-	                    double longitude = gps.getLongitude();
-	                     
-	                    // \n is for new line
-	                    Toast.makeText(v.getContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();    
-	                }else{
-	                    // can't get location
-	                    // GPS or Network is not enabled
-	                    // Ask user to enable GPS/network in settings
-	                    gps.showSettingsAlert();
-	                }
-				}
-			});
+//			Button trackButton = (Button) rootView
+//					.findViewById(R.id.button);
+//			trackButton.setOnClickListener(new OnClickListener() {
+//				public void onClick(View v){
+//					GPSTracker gps = new GPSTracker(v.getContext());
+//					// check if GPS enabled     
+//	                if(gps.canGetLocation()){
+//	                     
+//	                    double latitude = gps.getLatitude();
+//	                    double longitude = gps.getLongitude();
+//	                     
+//	                    // \n is for new line
+//	                    Toast.makeText(v.getContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();    
+//	                }else{
+//	                    // can't get location
+//	                    // GPS or Network is not enabled
+//	                    // Ask user to enable GPS/network in settings
+//	                    gps.showSettingsAlert();
+//	                }
+//				}
+//			});
 //			TextView dummyTextView = (TextView) rootView
 //					.findViewById(R.id.section_label);
 //			dummyTextView.setText(Integer.toString(getArguments().getInt(
