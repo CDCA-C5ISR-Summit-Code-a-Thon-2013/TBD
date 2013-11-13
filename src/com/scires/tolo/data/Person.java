@@ -31,6 +31,10 @@ public class Person {
 	
 	// Age
 	private String age = "";
+	
+	public Person() {
+		
+	}
 
 	public Person(String name, ArrayList<Point> location, String imageLocation,
 			String wantedFor, String rewardAmount, String height,
