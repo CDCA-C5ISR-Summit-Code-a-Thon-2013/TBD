@@ -126,15 +126,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    // looping through all rows and adding to list
 	    if (cursor.moveToFirst()) {
 	        do {
-	        	/*
-	        	 * values.put(ID, person.getId());
-		    values.put(NAME, person.getName()); 
-		    values.put(ILOCATION, person.getAge()); 
-		    values.put(REWARD, person.getAge()); 
-		    values.put(AGE, person.getAge()); 
-		    values.put(HEIGHT, person.getAge()); 
-		    values.put(WEIGHT, person.getWeight()); 
-	        	 */
 	            Person contact = new Person();
 	            contact.setId(Integer.parseInt(cursor.getString(0)));
 	            contact.setName(cursor.getString(1));
@@ -150,29 +141,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    }
 		
 	    db.close();
-//		Person p = new Person();
-//		p.setAge("25");
-//		p.setHeight("511");
-//		p.setImageLocation("");
-//		p.setName("Admiral Ackbar");
-//		p.setWantedFor("Stealing Death Star Plans");
-//		p.setRewardAmount("5 Million Imperial Credits");
-//		p.setWeight("225");
-//		
-//		people.add(p);
-//		
-//		p = new Person();
-//		p.setAge("35");
-//		p.setHeight("611");
-//		p.setImageLocation("");
-//		p.setName("Chewbacca");
-//		p.setWantedFor("Aiding and Abedding");
-//		p.setRewardAmount("1 Million Imperial Credits");
-//		p.setWeight("425");
-//		
-//		people.add(p);
+
 		
 		return people;
+	}
+
+	public void addPoint(Point point) {
+		
+		Log.d("JAMIE", "adding person");
+		SQLiteDatabase db = this.getWritableDatabase();
+		    ContentValues values = new ContentValues();
+		    values.put(POINT_ID, point.getId());
+		    values.put(POINT_PID, point.getPersonId()); 
+		    values.put(POINT_X, point.getX()); 
+		    values.put(POINT_Y, point.getY()); 
+		    
+		    // Inserting Row
+		    db.insert(TABLE_PEOPLE, null, values);
+		    db.close(); // Closing database connection
+		
 	}
 
 }

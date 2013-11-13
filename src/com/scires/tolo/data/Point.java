@@ -8,12 +8,10 @@ public class Point {
 	// Latitutde
 	private double y = 0.0;
 
+	private String id = "";
+	private String personId = "";
 	
-	public Point(double x, double y) {
-		super();
-		this.x = x;
-		this.y = y;
-	}
+
 	public double getX() {
 		return x;
 	}
@@ -27,6 +25,19 @@ public class Point {
 		this.y = y;
 	}
 	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPersonId() {
+		return personId;
+	}
+	public void setPersonId(String personId) {
+		this.personId = personId;
+	}
 	@Override
 	public String toString() {
 		return "Point [x=" + x + ", y=" + y + "]";
