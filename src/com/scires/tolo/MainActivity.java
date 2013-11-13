@@ -1,6 +1,10 @@
 package com.scires.tolo;
 
+import java.util.ArrayList;
 import java.util.Locale;
+
+import com.scires.tolo.data.Person;
+import com.scires.tolo.data.WantedDAO;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -50,6 +55,12 @@ public class MainActivity extends FragmentActivity {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		
+		ArrayList<Person> p = WantedDAO.getInstance(this.getApplicationContext()).checkDB(0, 0);
+		
+		for (Person p1:p) {
+			Log.d("JAMIE", p1.getName());
+		}
 
 	}
 

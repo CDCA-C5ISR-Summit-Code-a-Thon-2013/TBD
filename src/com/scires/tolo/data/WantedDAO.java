@@ -15,7 +15,7 @@ public class WantedDAO {
 		db = new DatabaseHandler(null);
 		
 	}
-	
+	   
 	public static synchronized WantedDAO getInstance(Context context) {
 		
 		if (instance == null) instance = new WantedDAO(context);

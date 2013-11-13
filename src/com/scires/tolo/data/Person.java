@@ -9,6 +9,8 @@ public class Person {
 	// The Name of the individual
 	private String name = "";
 	
+	private int id = 0;
+	
 	// List of known locations represented as
 	//  latitude and longitude
 	private ArrayList<Point> location;
@@ -112,6 +114,16 @@ public class Person {
 
 	public void setAge(String age) {
 		this.age = age;
+	}
+	
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override

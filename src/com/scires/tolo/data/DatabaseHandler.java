@@ -2,7 +2,9 @@ package com.scires.tolo.data;
 
 import java.util.ArrayList;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -48,14 +50,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		String CREATE_PEOPLE_TABLE = "CREATE TABLE " + TABLE_PEOPLE + "("
-                + POINT_ID + " INTEGER PRIMARY KEY,"
+                + POINT_ID + " INTEGER,"
 				+ POINT_PID + " TEXT,"
 				+ POINT_X + " TEXT,"
 				+ POINT_Y + " TEXT" + ")";
         db.execSQL(CREATE_PEOPLE_TABLE);
         
         String CREATE_POINT_TABLE = "CREATE TABLE " + TABLE_POINTS + "("
-                + ID + " INTEGER PRIMARY KEY,"
+                + ID + " INTEGER,"
 				+ NAME + " TEXT,"
 				+ ILOCATION + " TEXT,"
 				+ WANTEDFOR + " TEXT,"
@@ -64,6 +66,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ HEIGHT + " TEXT,"
 				+ WEIGHT + " TEXT" + ")";
         db.execSQL(CREATE_POINT_TABLE);
+        
+		Person p = new Person();
+		p.setId(0);
+		p.setAge("25");
+		p.setHeight("511");
+		p.setImageLocation("");
+		p.setName("Admiral Ackbar");
+		p.setWantedFor("Stealing Death Star Plans");
+		p.setRewardAmount("5 Million Imperial Credits");
+		p.setWeight("225");
+		
+		addPerson(p);
+		
+		p = new Person();
+		p.setId(1);
+		p.setAge("35");
+		p.setHeight("611");
+		p.setImageLocation("");
+		p.setName("Chewbacca");
+		p.setWantedFor("Aiding and Abedding");
+		p.setRewardAmount("1 Million Imperial Credits");
+		p.setWeight("425");
+		addPerson(p);
 		
 	}
 
@@ -78,32 +103,67 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
 	}
 
+	public void addPerson(Person person) {
+		 SQLiteDatabase db = this.getWritableDatabase();
+		 
+		    ContentValues values = new ContentValues();
+		    values.put(ID, person.getId());
+		    values.put(NAME, person.getName()); 
+		    values.put(ILOCATION, person.getAge()); 
+		    values.put(REWARD, person.getAge()); 
+		    values.put(AGE, person.getAge()); 
+		    values.put(HEIGHT, person.getAge()); 
+		    values.put(WEIGHT, person.getWeight()); 
+		    
+		    // Inserting Row
+		    db.insert(TABLE_PEOPLE, null, values);
+		    db.close(); // Closing database connection
+	}
 	public ArrayList<Person> checkDB(double x, double y) {
 		// TODO Auto-generated method stub
 		
 		ArrayList<Person> people = new ArrayList<Person>();
 		
-		Person p = new Person();
-		p.setAge("25");
-		p.setHeight("511");
-		p.setImageLocation("");
-		p.setName("Admiral Ackbar");
-		p.setWantedFor("Stealing Death Star Plans");
-		p.setRewardAmount("5 Million Imperial Credits");
-		p.setWeight("225");
 		
-		people.add(p);
+		// Select All Query
+	    String selectQuery = "SELECT  * FROM " + TABLE_PEOPLE;
+	 
+	    SQLiteDatabase db = this.getWritableDatabase();
+	    Cursor cursor = db.rawQuery(selectQuery, null);
+	 
+	    // looping through all rows and adding to list
+	    if (cursor.moveToFirst()) {
+	        do {
+	            Person contact = new Person();
+	            contact.setId(Integer.parseInt(cursor.getString(0)));
+	            contact.setName(cursor.getString(1));
+	           // contact.setPhoneNumber(cursor.getString(2));
+	            // Adding contact to list
+	            people.add(contact);
+	        } while (cursor.moveToNext());
+	    }
 		
-		p = new Person();
-		p.setAge("35");
-		p.setHeight("611");
-		p.setImageLocation("");
-		p.setName("Chewbacca");
-		p.setWantedFor("Aiding and Abedding");
-		p.setRewardAmount("1 Million Imperial Credits");
-		p.setWeight("425");
-		
-		people.add(p);
+//		Person p = new Person();
+//		p.setAge("25");
+//		p.setHeight("511");
+//		p.setImageLocation("");
+//		p.setName("Admiral Ackbar");
+//		p.setWantedFor("Stealing Death Star Plans");
+//		p.setRewardAmount("5 Million Imperial Credits");
+//		p.setWeight("225");
+//		
+//		people.add(p);
+//		
+//		p = new Person();
+//		p.setAge("35");
+//		p.setHeight("611");
+//		p.setImageLocation("");
+//		p.setName("Chewbacca");
+//		p.setWantedFor("Aiding and Abedding");
+//		p.setRewardAmount("1 Million Imperial Credits");
+//		p.setWeight("425");
+//		
+//		people.add(p);
 		
 		return people;
 	}
