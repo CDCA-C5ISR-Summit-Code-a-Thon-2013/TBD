@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-
+ 
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 	
@@ -126,12 +126,25 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    // looping through all rows and adding to list
 	    if (cursor.moveToFirst()) {
 	        do {
+	        	/*
+	        	 * values.put(ID, person.getId());
+		    values.put(NAME, person.getName()); 
+		    values.put(ILOCATION, person.getAge()); 
+		    values.put(REWARD, person.getAge()); 
+		    values.put(AGE, person.getAge()); 
+		    values.put(HEIGHT, person.getAge()); 
+		    values.put(WEIGHT, person.getWeight()); 
+	        	 */
 	            Person contact = new Person();
 	            contact.setId(Integer.parseInt(cursor.getString(0)));
 	            contact.setName(cursor.getString(1));
+	            contact.setImageLocation(cursor.getString(2));
+	            contact.setRewardAmount(cursor.getString(3));
+	            contact.setAge(cursor.getString(4));
+	            contact.setHeight(cursor.getString(5));
+	            contact.setWeight(cursor.getString(6));
 	            Log.d("JAMIE", "gett person: " + contact.getName());
-	           // contact.setPhoneNumber(cursor.getString(2));
-	            // Adding contact to list
+
 	            people.add(contact);
 	        } while (cursor.moveToNext());
 	    }
