@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 
 
@@ -15,7 +16,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
  
     // Database Name
     private static final String DATABASE_NAME = "TOLO";
@@ -42,21 +43,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String POINT_X = "x";
     private static final String POINT_Y = "y";
 
+	
+
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		 // db = this.getWritableDatabase();
+		Log.d("JAMIE", "on Create Called");
+		
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_PEOPLE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_POINTS);
+        
 		// TODO Auto-generated method stub
-		String CREATE_PEOPLE_TABLE = "CREATE TABLE " + TABLE_PEOPLE + "("
+		String CREATE_POINT_TABLE = "CREATE TABLE " + TABLE_POINTS + "("
                 + POINT_ID + " INTEGER,"
 				+ POINT_PID + " TEXT,"
 				+ POINT_X + " TEXT,"
 				+ POINT_Y + " TEXT" + ")";
-        db.execSQL(CREATE_PEOPLE_TABLE);
+        db.execSQL(CREATE_POINT_TABLE);
+       // db.close(); 
         
-        String CREATE_POINT_TABLE = "CREATE TABLE " + TABLE_POINTS + "("
+        String CREATE_PEOPLE_TABLE = "CREATE TABLE " + TABLE_PEOPLE + "("
                 + ID + " INTEGER,"
 				+ NAME + " TEXT,"
 				+ ILOCATION + " TEXT,"
@@ -65,31 +75,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 				+ AGE + " TEXT,"
 				+ HEIGHT + " TEXT,"
 				+ WEIGHT + " TEXT" + ")";
-        db.execSQL(CREATE_POINT_TABLE);
-        
-		Person p = new Person();
-		p.setId(0);
-		p.setAge("25");
-		p.setHeight("511");
-		p.setImageLocation("");
-		p.setName("Admiral Ackbar");
-		p.setWantedFor("Stealing Death Star Plans");
-		p.setRewardAmount("5 Million Imperial Credits");
-		p.setWeight("225");
-		
-		addPerson(p);
-		
-		p = new Person();
-		p.setId(1);
-		p.setAge("35");
-		p.setHeight("611");
-		p.setImageLocation("");
-		p.setName("Chewbacca");
-		p.setWantedFor("Aiding and Abedding");
-		p.setRewardAmount("1 Million Imperial Credits");
-		p.setWeight("425");
-		addPerson(p);
-		
+        Log.d("JAMIE", "executing:  " + CREATE_PEOPLE_TABLE);
+        db.execSQL(CREATE_PEOPLE_TABLE); 
 	}
 
 	@Override
@@ -104,8 +91,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	}
 
 	public void addPerson(Person person) {
-		 SQLiteDatabase db = this.getWritableDatabase();
-		 
+		
+		Log.d("JAMIE", "adding person");
+		SQLiteDatabase db = this.getWritableDatabase();
 		    ContentValues values = new ContentValues();
 		    values.put(ID, person.getId());
 		    values.put(NAME, person.getName()); 
@@ -127,8 +115,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		
 		// Select All Query
 	    String selectQuery = "SELECT  * FROM " + TABLE_PEOPLE;
+	    
+	    Log.d("JAMIE", "select query " + selectQuery);
 	 
+	    //if (db != null) db.close();
 	    SQLiteDatabase db = this.getWritableDatabase();
+	   //  if (db == null) db = this.getWritableDatabase();
 	    Cursor cursor = db.rawQuery(selectQuery, null);
 	 
 	    // looping through all rows and adding to list
@@ -137,12 +129,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	            Person contact = new Person();
 	            contact.setId(Integer.parseInt(cursor.getString(0)));
 	            contact.setName(cursor.getString(1));
+	            Log.d("JAMIE", "gett person: " + contact.getName());
 	           // contact.setPhoneNumber(cursor.getString(2));
 	            // Adding contact to list
 	            people.add(contact);
 	        } while (cursor.moveToNext());
 	    }
 		
+	    db.close();
 //		Person p = new Person();
 //		p.setAge("25");
 //		p.setHeight("511");

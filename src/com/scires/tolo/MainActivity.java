@@ -57,9 +57,38 @@ public class MainActivity extends FragmentActivity {
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
-		ArrayList<Person> p = WantedDAO.getInstance(this.getApplicationContext()).checkDB(0, 0);
+		WantedDAO dao = WantedDAO.getInstance(this.getApplicationContext());
 		
-		for (Person p1:p) {
+		
+		
+        
+		Person p = new Person();
+		p.setId(0);
+		p.setAge("25");
+		p.setHeight("511");
+		p.setImageLocation("");
+		p.setName("Admiral Ackbar");
+		p.setWantedFor("Stealing Death Star Plans");
+		p.setRewardAmount("5 Million Imperial Credits");
+		p.setWeight("225");
+		
+		dao.addPerson(p);
+		
+		p = new Person();
+		p.setId(1);
+		p.setAge("35");
+		p.setHeight("611");
+		p.setImageLocation("");
+		p.setName("Chewbacca");
+		p.setWantedFor("Aiding and Abedding");
+		p.setRewardAmount("1 Million Imperial Credits");
+		p.setWeight("425");
+		dao.addPerson(p);
+		
+		
+		ArrayList<Person> pList = dao.checkDB(0, 0);
+		
+		for (Person p1:pList) {
 			Log.d("JAMIE", p1.getName());
 		}
 
