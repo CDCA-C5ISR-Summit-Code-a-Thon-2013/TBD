@@ -51,12 +51,6 @@ public class MainActivity extends FragmentActivity {
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
 		WantedDAO dao = WantedDAO.getInstance(this.getApplicationContext());
-<<<<<<< HEAD
-
-=======
-		
-     
->>>>>>> 2017a3ced4b33fa873dfc1b577d205df23f1cfa7
 		Person p = new Person();
 		p.setId(0);
 		p.setAge("25");

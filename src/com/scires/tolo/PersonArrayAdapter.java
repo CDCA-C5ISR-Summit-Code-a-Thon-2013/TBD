@@ -47,7 +47,7 @@ public class PersonArrayAdapter extends ArrayAdapter<Person>{
 		
 		Person person = data.get(position);
 		holder.txtTitle.setText(person.getName());
-		holder.imgIcon.setImageResource(person.getImageLocation());
+		//holder.imgIcon.setImageResource(person.getImageLocation());
 		
 		return row;
 	}
