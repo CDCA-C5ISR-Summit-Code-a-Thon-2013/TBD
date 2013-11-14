@@ -51,11 +51,15 @@ public class MainActivity extends FragmentActivity {
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
 		WantedDAO dao = WantedDAO.getInstance(this.getApplicationContext());
+<<<<<<< HEAD
 		
 		ArrayList<Person> test = new ArrayList<Person>();
 
 		test = dao.checkDB(0, 0);
 		if (test.size() == 0) {
+=======
+
+>>>>>>> d2fbbec806df594e7062b2db06ed441de90f63d4
 		Person p = new Person();
 		p.setId(0);
 		p.setAge("25");

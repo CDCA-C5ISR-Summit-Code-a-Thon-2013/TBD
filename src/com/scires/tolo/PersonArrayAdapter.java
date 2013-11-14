@@ -48,10 +48,20 @@ public class PersonArrayAdapter extends ArrayAdapter<Person>{
 		}
 		
 		Person person = data.get(position);
+<<<<<<< HEAD
 		holder.txtTitle.setText("Name: " + person.getName() + "\nReward: " + person.getRewardAmount() + "\nLocation: " + Math.round(Math.random()*1000) + "m");
 		int drwableid = context.getResources().getIdentifier(person.getImageLocation(), "drawable", context.getPackageName());
 		holder.imgIcon.setImageResource(drwableid);
 		
+=======
+		holder.txtTitle.setText(person.getName());
+
+		int drwableid = context.getResources().getIdentifier("bad_1", "drawable", context.getPackageName());
+		//int drwableid = getResId("bad_1", context, Drawable.class);
+		holder.imgIcon.setImageResource(drwableid);
+		int id = R.drawable.bad_1;
+
+>>>>>>> d2fbbec806df594e7062b2db06ed441de90f63d4
 		return row;
 	}
 	
