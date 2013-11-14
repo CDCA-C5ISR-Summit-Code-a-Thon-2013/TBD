@@ -11,18 +11,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
@@ -58,10 +50,7 @@ public class MainActivity extends FragmentActivity {
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
 		WantedDAO dao = WantedDAO.getInstance(this.getApplicationContext());
-		
-		
-		
-        
+
 		Person p = new Person();
 		p.setId(0);
 		p.setAge("25");
@@ -106,7 +95,9 @@ public class MainActivity extends FragmentActivity {
 	    switch (item.getItemId()) {
 	    case R.id.action_track:
 	    	if (gps == null)
-	    		gps = new GPSTracker(getApplicationContext());
+	    		gps = new GPSTracker(getApplicationContext(), this);
+	    	
+	    		gps.onLocationChanged(gps.getLocation());
 			// check if GPS enabled     
             if(gps.canGetLocation()){
                  
@@ -146,16 +137,19 @@ public class MainActivity extends FragmentActivity {
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
-			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
-			return fragment;
+			switch (position) {
+			case 0:
+				return new ListFragment();
+			case 1:
+				return new MapFragment();
+			}
+			
+			return null;
 		}
 
 		@Override
 		public int getCount() {
-			// Show 3 total pages.
+			// Show 2 total pages.
 			return 2;
 		}
 
@@ -169,54 +163,6 @@ public class MainActivity extends FragmentActivity {
 				return getString(R.string.title_section2).toUpperCase(l);
 			}
 			return null;
-		}
-	}
-
-	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
-	 */
-	public static class DummySectionFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
-
-		public DummySectionFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
-					container, false);
-//			Button trackButton = (Button) rootView
-//					.findViewById(R.id.button);
-//			trackButton.setOnClickListener(new OnClickListener() {
-//				public void onClick(View v){
-//					GPSTracker gps = new GPSTracker(v.getContext());
-//					// check if GPS enabled     
-//	                if(gps.canGetLocation()){
-//	                     
-//	                    double latitude = gps.getLatitude();
-//	                    double longitude = gps.getLongitude();
-//	                     
-//	                    // \n is for new line
-//	                    Toast.makeText(v.getContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();    
-//	                }else{
-//	                    // can't get location
-//	                    // GPS or Network is not enabled
-//	                    // Ask user to enable GPS/network in settings
-//	                    gps.showSettingsAlert();
-//	                }
-//				}
-//			});
-//			TextView dummyTextView = (TextView) rootView
-//					.findViewById(R.id.section_label);
-//			dummyTextView.setText(Integer.toString(getArguments().getInt(
-//					ARG_SECTION_NUMBER)));
-			return rootView;
 		}
 	}
 

@@ -1,5 +1,10 @@
 package com.scires.tolo;
 
+import java.util.ArrayList;
+
+import com.scires.tolo.data.Person;
+import com.scires.tolo.data.WantedDAO;
+
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
@@ -12,10 +17,12 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
+import android.widget.ListView;
 
 public class GPSTracker extends Service implements LocationListener{
 
 	private final Context mContext;
+	private final MainActivity mainActivity;
 	boolean isGPSEnabled = false;
 	boolean isNetworkEnabled = false;
 	boolean canGetLocation = false;
@@ -25,8 +32,9 @@ public class GPSTracker extends Service implements LocationListener{
 	private static final long MIN_TIME_BW_UPDATES = 60000; //1 minute
 	protected LocationManager locationManager;
 	
-	public GPSTracker(Context context){
+	public GPSTracker(Context context, MainActivity mainActivity){
 		this.mContext = context;
+		this.mainActivity = mainActivity;
 		getLocation();
 	}
 	
@@ -145,8 +153,17 @@ public class GPSTracker extends Service implements LocationListener{
 	}
 	@Override
 	public void onLocationChanged(Location arg0) {
-		// TODO Auto-generated method stub
-		
+		Log.d("JAMIE", "I CHANGED");
+		ListView lv = (ListView)mainActivity.findViewById(android.R.id.list);
+		Log.d("JAMIE", "here 1");
+		WantedDAO dao = WantedDAO.getInstance(mContext);
+		Log.d("JAMIE", "here 2");
+		ArrayList<Person> ap = dao.checkDB(longitude, latitude);
+		Log.d("JAMIE", "here 3");
+		PersonArrayAdapter paa = new PersonArrayAdapter(mainActivity, R.layout.fragment_list_item, ap);
+		Log.d("JAMIE", "here 4");
+		lv.setAdapter(paa);
+		Log.d("JAMIE", "here 5");
 	}
 
 	@Override
