@@ -51,12 +51,7 @@ public class MainActivity extends FragmentActivity {
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
 		WantedDAO dao = WantedDAO.getInstance(this.getApplicationContext());
-<<<<<<< HEAD
 
-=======
-		
-     
->>>>>>> 2017a3ced4b33fa873dfc1b577d205df23f1cfa7
 		Person p = new Person();
 		p.setId(0);
 		p.setAge("25");
@@ -108,7 +103,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(4);
 		p.setAge("65");
 		p.setHeight("611");
-		p.setImageLocation("HUSAYN_MUHAMMAD_AL-UMAR.jpg");
+		p.setImageLocation("HUSAYN_MUHAMMAD_AL_UMAR.jpg");
 		p.setName("HUSAYN MUHAMMAD AL-UMAR");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");
@@ -120,7 +115,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(5);
 		p.setAge("75");
 		p.setHeight("611");
-		p.setImageLocation("ibrahim_salih_mohammed_al-yacoub.jpg");
+		p.setImageLocation("ibrahim_salih_mohammed_al_yacoub.jpg");
 		p.setName("IBRAHIM SALIH MOHAMMED AL-YACOUB");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");
@@ -168,7 +163,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(9);
 		p.setAge("35");
 		p.setHeight("611");
-		p.setImageLocation("MUHAMMAD_AHMED_AL-MUNAWAR.jpg");
+		p.setImageLocation("MUHAMMAD_AHMED_AL_MUNAWAR.jpg");
 		p.setName("MUHAMMAD AHMED AL-MUNAWAR");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");

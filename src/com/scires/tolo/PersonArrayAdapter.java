@@ -1,9 +1,11 @@
 package com.scires.tolo;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +49,10 @@ public class PersonArrayAdapter extends ArrayAdapter<Person>{
 		
 		Person person = data.get(position);
 		holder.txtTitle.setText(person.getName());
-		holder.imgIcon.setImageResource(person.getImageLocation());
+		int drwableid = context.getResources().getIdentifier("bad_1", "drawable", context.getPackageName());
+		//int drwableid = getResId("bad_1", context, Drawable.class);
+		holder.imgIcon.setImageResource(drwableid);
+		int id = R.drawable.bad_1;
 		
 		return row;
 	}
@@ -55,5 +60,16 @@ public class PersonArrayAdapter extends ArrayAdapter<Person>{
 	static class PersonHolder{
 		ImageView imgIcon;
 		TextView txtTitle;
+	}
+	
+	public static int getResId(String variableName, Context context, Class<?> c) {
+
+	    try {
+	        Field idField = c.getDeclaredField(variableName);
+	        return idField.getInt(idField);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return -1;
+	    } 
 	}
 }
