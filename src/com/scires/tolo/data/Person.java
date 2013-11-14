@@ -13,7 +13,7 @@ public class Person {
 	
 	// List of known locations represented as
 	//  latitude and longitude
-	private ArrayList<Point> location;
+	private ArrayList<Point> location = new ArrayList<Point>();
 	
 	// Image location
 	// the file system image location
