@@ -32,4 +32,9 @@ public class WantedDAO {
 		db.addPerson(p);
 		
 	}
+
+	public void addPoint(Point point) {
+		db.addPoint(point);
+		
+	}
 }

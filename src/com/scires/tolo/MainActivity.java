@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import com.scires.tolo.data.Person;
+import com.scires.tolo.data.Point;
 import com.scires.tolo.data.WantedDAO;
 
 import android.os.Bundle;
@@ -50,7 +51,12 @@ public class MainActivity extends FragmentActivity {
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
 		WantedDAO dao = WantedDAO.getInstance(this.getApplicationContext());
+<<<<<<< HEAD
 
+=======
+		
+     
+>>>>>>> 2017a3ced4b33fa873dfc1b577d205df23f1cfa7
 		Person p = new Person();
 		p.setId(0);
 		p.setAge("25");
@@ -59,21 +65,199 @@ public class MainActivity extends FragmentActivity {
 		p.setName("Admiral Ackbar");
 		p.setWantedFor("Stealing Death Star Plans");
 		p.setRewardAmount("5 Million Imperial Credits");
-		p.setWeight("225");
-		
+		p.setWeight("225");		
 		dao.addPerson(p);
 		
 		p = new Person();
 		p.setId(1);
 		p.setAge("35");
 		p.setHeight("611");
-		p.setImageLocation("");
-		p.setName("Chewbacca");
+		p.setImageLocation("ABD_AL_AZIZ_AWDA.jpg");
+		p.setName("ABD AL AZIZ AWDA");
+		p.setWantedFor("Aiding and Abedding");
+		p.setRewardAmount("1 Million Imperial Credits");
+		p.setWeight("175");
+		dao.addPerson(p);
+		
+		
+		p = new Person();
+		p.setId(2);
+		p.setAge("45");
+		p.setHeight("601");
+		p.setImageLocation("ALI_ATWA.jpg");
+		p.setName("ALI ATWA");
+		p.setWantedFor("Aiding and Abedding");
+		p.setRewardAmount("10 Million Imperial Credits");
+		p.setWeight("225");
+		dao.addPerson(p);
+		
+		
+		p = new Person();
+		p.setId(3);
+		p.setAge("15");
+		p.setHeight("611");
+		p.setImageLocation("faouzi_mohamad_ayoub.jpg");
+		p.setName("FAOUZI MOHAMAD AYOUB");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");
 		p.setWeight("425");
 		dao.addPerson(p);
 		
+		
+		p = new Person();
+		p.setId(4);
+		p.setAge("65");
+		p.setHeight("611");
+		p.setImageLocation("HUSAYN_MUHAMMAD_AL-UMAR.jpg");
+		p.setName("HUSAYN MUHAMMAD AL-UMAR");
+		p.setWantedFor("Aiding and Abedding");
+		p.setRewardAmount("1 Million Imperial Credits");
+		p.setWeight("425");
+		dao.addPerson(p);
+		
+		
+		p = new Person();
+		p.setId(5);
+		p.setAge("75");
+		p.setHeight("611");
+		p.setImageLocation("ibrahim_salih_mohammed_al-yacoub.jpg");
+		p.setName("IBRAHIM SALIH MOHAMMED AL-YACOUB");
+		p.setWantedFor("Aiding and Abedding");
+		p.setRewardAmount("1 Million Imperial Credits");
+		p.setWeight("175");
+		dao.addPerson(p);
+		
+		
+		p = new Person();
+		p.setId(6);
+		p.setAge("35");
+		p.setHeight("611");
+		p.setImageLocation("ISNILON_TOTONI_HAPILON.jpg");
+		p.setName("ISNILON TOTONI HAPILON.jpg");
+		p.setWantedFor("Aiding and Abedding");
+		p.setRewardAmount("1 Million Imperial Credits");
+		p.setWeight("425");
+		dao.addPerson(p);
+		
+		
+		p = new Person();
+		p.setId(7);
+		p.setAge("35");
+		p.setHeight("511");
+		p.setImageLocation("JABER_A_ELBAHEH.jpg");
+		p.setName("JABER A ELBAHEH");
+		p.setWantedFor("Aiding and Abedding");
+		p.setRewardAmount("1 Million Imperial Credits");
+		p.setWeight("425");
+		dao.addPerson(p);
+		
+		
+		p = new Person();
+		p.setId(8);
+		p.setAge("35");
+		p.setHeight("611");
+		p.setImageLocation("JOANNE_DEBORAH_CHEISMARD.jpg");
+		p.setName("JOANNE DEBORAH CHEISMARD");
+		p.setWantedFor("Aiding and Abedding");
+		p.setRewardAmount("1 Million Imperial Credits");
+		p.setWeight("125");
+		dao.addPerson(p);
+		
+		
+		p = new Person();
+		p.setId(9);
+		p.setAge("35");
+		p.setHeight("611");
+		p.setImageLocation("MUHAMMAD_AHMED_AL-MUNAWAR.jpg");
+		p.setName("MUHAMMAD AHMED AL-MUNAWAR");
+		p.setWantedFor("Aiding and Abedding");
+		p.setRewardAmount("1 Million Imperial Credits");
+		p.setWeight("425");
+		dao.addPerson(p);
+		
+		Point point = new Point();
+		point.setId("0");
+		point.setPersonId("0");
+		point.setX(-80.02015802998223);
+		point.setY(32.86598302308267);
+		dao.addPoint(point);
+
+		point = new Point();
+		point.setId("1");
+		point.setPersonId("0");
+		point.setX(-80.02082937404515);
+		point.setY(32.86588628313771);
+		dao.addPoint(point);
+
+		point = new Point();
+		point.setId("2");
+		point.setPersonId("1");
+		point.setX(-80.01989445656540);
+		point.setY(32.86575762092403);
+		dao.addPoint(point);
+
+		point = new Point();
+		point.setId("3");
+		point.setPersonId("2");
+		point.setX(-80.01891746193172);
+		point.setY(32.86611909049830);
+		dao.addPoint(point);
+
+		point = new Point();
+		point.setId("4");
+		point.setPersonId("3");
+		point.setX(-80.01900320880117);
+		point.setY(32.86669232885620);
+		dao.addPoint(point);
+
+		point = new Point();
+		point.setId("5");
+		point.setPersonId("4");
+		point.setX(-80.01998607076706);
+		point.setY(32.86680100023082);
+		dao.addPoint(point);
+
+		point = new Point();
+		point.setId("6");
+		point.setPersonId("5");
+		point.setX(-80.02104269348087);
+		point.setY(32.86727914589724);
+		dao.addPoint(point);
+
+		point = new Point();
+		point.setId("7");
+		point.setPersonId("6");
+		point.setX(-80.02015802998223);
+		point.setY(32.86598302308267);
+		dao.addPoint(point);
+
+		point = new Point();
+		point.setId("8");
+		point.setPersonId("7");
+		point.setX(-80.02078453086318);
+		point.setY(32.86645537245354);
+		dao.addPoint(point);
+
+		point = new Point();
+		point.setId("9");
+		point.setPersonId("8");
+		point.setX(-80.02146857798101);
+		point.setY(32.86584403834573);
+		dao.addPoint(point);
+
+		point = new Point();
+		point.setId("10");
+		point.setPersonId("9");
+		point.setX(-80.02015802998223);
+		point.setY(32.86598302308267);
+		dao.addPoint(point);
+
+		point = new Point();
+		point.setId("11");
+		point.setPersonId("3");
+		point.setX(-80.02015802998223);
+		point.setY(32.86598302308267);
+		dao.addPoint(point);
 		
 		ArrayList<Person> pList = dao.checkDB(0, 0);
 		

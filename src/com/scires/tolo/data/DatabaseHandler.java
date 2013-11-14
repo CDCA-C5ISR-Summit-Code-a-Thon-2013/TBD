@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-
+ 
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 	
@@ -129,37 +129,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	            Person contact = new Person();
 	            contact.setId(Integer.parseInt(cursor.getString(0)));
 	            contact.setName(cursor.getString(1));
+	            contact.setImageLocation(cursor.getString(2));
+	            contact.setRewardAmount(cursor.getString(3));
+	            contact.setAge(cursor.getString(4));
+	            contact.setHeight(cursor.getString(5));
+	            contact.setWeight(cursor.getString(6));
 	            Log.d("JAMIE", "gett person: " + contact.getName());
-	           // contact.setPhoneNumber(cursor.getString(2));
-	            // Adding contact to list
+
 	            people.add(contact);
 	        } while (cursor.moveToNext());
 	    }
 		
 	    db.close();
-//		Person p = new Person();
-//		p.setAge("25");
-//		p.setHeight("511");
-//		p.setImageLocation("");
-//		p.setName("Admiral Ackbar");
-//		p.setWantedFor("Stealing Death Star Plans");
-//		p.setRewardAmount("5 Million Imperial Credits");
-//		p.setWeight("225");
-//		
-//		people.add(p);
-//		
-//		p = new Person();
-//		p.setAge("35");
-//		p.setHeight("611");
-//		p.setImageLocation("");
-//		p.setName("Chewbacca");
-//		p.setWantedFor("Aiding and Abedding");
-//		p.setRewardAmount("1 Million Imperial Credits");
-//		p.setWeight("425");
-//		
-//		people.add(p);
+
 		
 		return people;
+	}
+
+	public void addPoint(Point point) {
+		
+		Log.d("JAMIE", "adding person");
+		SQLiteDatabase db = this.getWritableDatabase();
+		    ContentValues values = new ContentValues();
+		    values.put(POINT_ID, point.getId());
+		    values.put(POINT_PID, point.getPersonId()); 
+		    values.put(POINT_X, point.getX()); 
+		    values.put(POINT_Y, point.getY()); 
+		    
+		    // Inserting Row
+		    db.insert(TABLE_PEOPLE, null, values);
+		    db.close(); // Closing database connection
+		
 	}
 
 }
