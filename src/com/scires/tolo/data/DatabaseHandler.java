@@ -14,12 +14,12 @@ import android.location.Location;
 import android.util.Log;
 
  
-
+ 
 public class DatabaseHandler extends SQLiteOpenHelper {
     
     // All Static variables
-    // Database Version
-    private static final int DATABASE_VERSION = 5;
+    // Database Version  
+    private static final int DATABASE_VERSION = 10;
  
     // Database Name
     private static final String DATABASE_NAME = "TOLO";
@@ -57,8 +57,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
          // db = this.getWritableDatabase();
         Log.d("JAMIE", "on Create Called");
         
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PEOPLE);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_POINTS);
+       // db.execSQL("DELETE * FROM  " + TABLE_PEOPLE);
+     //   db.execSQL("DELETE * FROM  " + TABLE_POINTS);
         
         // TODO Auto-generated method stub
         String CREATE_POINT_TABLE = "CREATE TABLE " + TABLE_POINTS + "("
@@ -100,10 +100,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             values.put(ID, person.getId());
             values.put(NAME, person.getName()); 
-            values.put(ILOCATION, person.getAge()); 
-            values.put(REWARD, person.getAge()); 
+            values.put(ILOCATION, person.getImageLocation()); 
+            values.put(REWARD, person.getRewardAmount()); 
             values.put(AGE, person.getAge()); 
-            values.put(HEIGHT, person.getAge()); 
+            values.put(HEIGHT, person.getHeight()); 
             values.put(WEIGHT, person.getWeight()); 
             
             // Inserting Row
@@ -301,7 +301,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             }
         }
         
-        return sortedData(resultSet);
+        //return sortedData(resultSet);
+        return resultSet;
     }
     
     private ArrayList<Person> sortedData(ArrayList<Person> resultSet) {

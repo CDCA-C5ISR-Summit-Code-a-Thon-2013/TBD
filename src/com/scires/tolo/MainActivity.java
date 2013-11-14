@@ -51,15 +51,16 @@ public class MainActivity extends FragmentActivity {
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
 		WantedDAO dao = WantedDAO.getInstance(this.getApplicationContext());
-<<<<<<< HEAD
+		
+		ArrayList<Person> test = new ArrayList<Person>();
 
-=======
->>>>>>> 0f4f87f8c9108a7864b5e20e9bfe38ee1c814c19
+		test = dao.checkDB(0, 0);
+		if (test.size() == 0) {
 		Person p = new Person();
 		p.setId(0);
 		p.setAge("25");
 		p.setHeight("511");
-		p.setImageLocation("");
+		p.setImageLocation("bad_10");
 		p.setName("Admiral Ackbar");
 		p.setWantedFor("Stealing Death Star Plans");
 		p.setRewardAmount("5 Million Imperial Credits");
@@ -70,7 +71,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(1);
 		p.setAge("35");
 		p.setHeight("611");
-		p.setImageLocation("ABD_AL_AZIZ_AWDA.jpg");
+		p.setImageLocation("bad_1");
 		p.setName("ABD AL AZIZ AWDA");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");
@@ -82,7 +83,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(2);
 		p.setAge("45");
 		p.setHeight("601");
-		p.setImageLocation("ALI_ATWA.jpg");
+		p.setImageLocation("bad_2");
 		p.setName("ALI ATWA");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("10 Million Imperial Credits");
@@ -94,7 +95,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(3);
 		p.setAge("15");
 		p.setHeight("611");
-		p.setImageLocation("faouzi_mohamad_ayoub.jpg");
+		p.setImageLocation("bad_3");
 		p.setName("FAOUZI MOHAMAD AYOUB");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");
@@ -106,7 +107,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(4);
 		p.setAge("65");
 		p.setHeight("611");
-		p.setImageLocation("HUSAYN_MUHAMMAD_AL_UMAR.jpg");
+		p.setImageLocation("bad_4");
 		p.setName("HUSAYN MUHAMMAD AL-UMAR");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");
@@ -118,7 +119,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(5);
 		p.setAge("75");
 		p.setHeight("611");
-		p.setImageLocation("ibrahim_salih_mohammed_al_yacoub.jpg");
+		p.setImageLocation("bad_5");
 		p.setName("IBRAHIM SALIH MOHAMMED AL-YACOUB");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");
@@ -130,7 +131,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(6);
 		p.setAge("35");
 		p.setHeight("611");
-		p.setImageLocation("ISNILON_TOTONI_HAPILON.jpg");
+		p.setImageLocation("bad_6");
 		p.setName("ISNILON TOTONI HAPILON.jpg");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");
@@ -142,7 +143,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(7);
 		p.setAge("35");
 		p.setHeight("511");
-		p.setImageLocation("JABER_A_ELBAHEH.jpg");
+		p.setImageLocation("bad_7");
 		p.setName("JABER A ELBAHEH");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");
@@ -154,7 +155,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(8);
 		p.setAge("35");
 		p.setHeight("611");
-		p.setImageLocation("JOANNE_DEBORAH_CHEISMARD.jpg");
+		p.setImageLocation("bad_8");
 		p.setName("JOANNE DEBORAH CHEISMARD");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");
@@ -166,7 +167,7 @@ public class MainActivity extends FragmentActivity {
 		p.setId(9);
 		p.setAge("35");
 		p.setHeight("611");
-		p.setImageLocation("MUHAMMAD_AHMED_AL_MUNAWAR.jpg");
+		p.setImageLocation("bad_9");
 		p.setName("MUHAMMAD AHMED AL-MUNAWAR");
 		p.setWantedFor("Aiding and Abedding");
 		p.setRewardAmount("1 Million Imperial Credits");
@@ -256,6 +257,7 @@ public class MainActivity extends FragmentActivity {
 		point.setX(-80.02015802998223);
 		point.setY(32.86598302308267);
 		dao.addPoint(point);
+		}
 		
 		ArrayList<Person> pList = dao.checkDB(0, 0);
 		
