@@ -49,15 +49,12 @@ public class PersonArrayAdapter extends ArrayAdapter<Person>{
 		
 		Person person = data.get(position);
 		holder.txtTitle.setText(person.getName());
-<<<<<<< HEAD
+
 		int drwableid = context.getResources().getIdentifier("bad_1", "drawable", context.getPackageName());
 		//int drwableid = getResId("bad_1", context, Drawable.class);
 		holder.imgIcon.setImageResource(drwableid);
 		int id = R.drawable.bad_1;
-=======
-		//holder.imgIcon.setImageResource(person.getImageLocation());
->>>>>>> 0f4f87f8c9108a7864b5e20e9bfe38ee1c814c19
-		
+
 		return row;
 	}
 	
